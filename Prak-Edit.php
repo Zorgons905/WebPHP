@@ -18,7 +18,7 @@ $pesanBerhasil = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (!isset($_GET["nrp"])) {
-        header("location: /WebPHP/Praktikum9/Prak-Website.php");
+        header("location: Prak-Website.php");
         exit;
     }
 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $row = mysqli_fetch_assoc($result);
 
     if (!$row) {
-        header("location: /WebPHP/Praktikum9/Prak-Website.php");
+        header("location: Prak-Website.php");
         exit;
     }
 
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         if (mysqli_query($conn, $sql)) {
             $pesanBerhasil = "Data berhasil diedit!";
-            header("location: /WebPHP/Praktikum9/Prak-Website.php");
+            header("location: Prak-Website.php");
             mysqli_close($conn);
             exit;
         } else {
@@ -226,7 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
                 <div class="col-sm-3 col-sm-3 d-grid">
-                    <a class="btn btn-outline-danger" href="/WebPHP/Praktikum9/Prak-Website.php"
+                    <a class="btn btn-outline-danger" href="Prak-Website.php"
                         role="button">Kembali</a>
                 </div>
             </div>
@@ -235,163 +235,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 </body>
 
 </html>
-
-<!-- <?php
-$nrp = "";
-$nama = "";
-$jenis_kelamin = "";
-$jurusan = "";
-$agama = "";
-$email = "";
-$no_hp = "";
-$asal_sma = "";
-$matkul_fav = "";
-
-$pesanError = "";
-$pesanBerhasil = "";
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nrp = $_POST['nrp'];
-    $nama = $_POST['nama'];
-    if (isset($_POST['jenisKelamin'])) {
-        $jenis_kelamin = $_POST['jenisKelamin'];
-    }
-    $jurusan = $_POST['jurusan'];
-    if (isset($_POST['agama'])) {
-        $agama = $_POST['agama'];
-    }
-    $email = $_POST['email'];
-    $no_hp = $_POST['noHP'];
-    $asal_sma = $_POST['asalSMA'];
-    $matkul_fav = $_POST['matkulFav'];
-    do {
-        if (empty($nrp) || empty($nama) || empty($jenis_kelamin) || empty($jurusan)) {
-            $pesanError = "Beberapa kolom wajib diisi!";
-            break;
-        }
-
-        $nrp = "";
-        $nama = "";
-        $jenis_kelamin = "";
-        $jurusan = "";
-        $agama = "";
-        $email = "";
-        $no_hp = "";
-        $asal_sma = "";
-        $matkul_fav = "";
-
-        $pesanBerhasil = "Data berhasil ditambahkan!";
-
-    } while (false);
-}
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-    </style>
-</head>
-
-<body>
-    <div class="container my-5">
-        <h2>Data Baru</h2>
-        
-        <?php
-        if (!empty($pesanError)) {
-            echo "
-                <div class='alert alert-warning alert-dismissable fade show' role='alert'>
-                    <strong>$pesanError</strong>
-                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                </div>
-            ";
-        }
-        ?>
-        <form action="post">
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">NRP</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="nrp" value="<?php echo $nrp; ?>">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Nama</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="nama" value="<?php echo $nama; ?>">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Jenis Kelamin</label>
-                <div class="col-sm-6">
-                    <select class="form-select" id="sel1" name="jenisKelamin">
-                        <option hidden disabled selected value></option>
-                        <option value="jk1">Pria</option>
-                        <option value="jk2">Wanita</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Jurusan</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="jurusan" value="<?php echo $jurusan; ?>">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Agama</label>
-                <div class="col-sm-6">
-                    <select class="form-select" id="sel2" name="agama">
-                        <option hidden disabled selected value></option>
-                        <option value="ag1">Islam</option>
-                        <option value="ag2">Katolik</option>
-                        <option value="ag3">Prostestan</option>
-                        <option value="ag4">Hindu</option>
-                        <option value="ag5">Buddha</option>
-                        <option value="ag6">Konghucu</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Email</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="email" value="<?php echo $email; ?>">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">No. Handphone</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="noHP" value="<?php echo $no_hp; ?>">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Asal Sekolah</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="asalSMA" value="<?php echo $asal_sma; ?>">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Matkul Favorit</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="matkulFav" value="<?php echo $matkul_fav; ?>">
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="offset-sm-3 col-sm-3 d-grid">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                <div class="col-sm-3 col-sm-3 d-grid">
-                    <a class="btn btn-outline-primary" href="/WebPHP/Praktikum9/Prak-Website.php"
-                        role="button">Batalkan</a>
-                </div>
-            </div>
-        </form>
-    </div>
-</body>
-
-</html> -->
