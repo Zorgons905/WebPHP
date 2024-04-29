@@ -59,8 +59,8 @@ $dataAwal = ($halamanAktif * $banyakDataPerHal) - $banyakDataPerHal;
         <h2 class="text-center">Daftar Mahasiswa</h2>
         <div class="row">
             <div class="col-md-6">
-                <a class="btn btn-primary" role="button" href="/WebPHP/Praktikum9/Prak-Beranda.php">Beranda</a>
-                <a class="btn btn-success" role="button" href="/WebPHP/Praktikum9/Prak-Create.php">Tambah Data</a>
+                <a class="btn btn-primary" role="button" href="Prak-Beranda.php">Beranda</a>
+                <a class="btn btn-success" role="button" href="Prak-Create.php">Tambah Data</a>
             </div>
             <div class="col-md-6 text-right">
                 <form action="" method="post" class="form-inline">
@@ -131,8 +131,8 @@ $dataAwal = ($halamanAktif * $banyakDataPerHal) - $banyakDataPerHal;
                         <td>$row[no_hp]</td>
                         <td>$row[asal_sma]</td>
                         <td>$row[matkul_fav]</td>
-                        <td><a class='btn btn-primary btn-sm' href='/WebPHP/Praktikum9/Prak-Edit.php?nrp=$row[nrp]'><i class='bi bi-pencil-square'></i></a></td>
-                        <td><a class='btn btn-danger btn-sm' href='/WebPHP/Praktikum9/Prak-Delete.php?nrp=$row[nrp]'><i class='bi bi-trash-fill'></i></a></td>
+                        <td><a class='btn btn-primary btn-sm' href='Prak-Edit.php?nrp=$row[nrp]'><i class='bi bi-pencil-square'></i></a></td>
+                        <td><a class='btn btn-danger btn-sm' href='Prak-Delete.php?nrp=$row[nrp]'><i class='bi bi-trash-fill'></i></a></td>
                         </tr>
                         ";
                             $index++;
